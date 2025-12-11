@@ -10,6 +10,7 @@ function Footer() {
       <p className="text-sm mt-2">
         If you have any questions, feel free to ask me.👉:{" "}
         <a
+          target="_blank"
           href="https://t.me/farhodweb"
           className="text-amber-500 hover:underline"
         >
