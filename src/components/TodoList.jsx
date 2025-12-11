@@ -99,7 +99,7 @@ function TodoList({ todos, editId, handleEdit, cancelEdit }) {
             {/* DELETE BUTTON */}
             <button
               onClick={() => handleDelete(id)}
-              className="absolute transition-all opacity-0 -top-1 -right-1 text-sm sm:text-base
+              className="absolute transition-all opacity-100 lg:opacity-0 -top-1 -right-1 text-sm sm:text-base
            cursor-pointer group-hover:opacity-100 hover:text-red-500 hover:rotate-12"
             >
               <FaTrash />
@@ -110,7 +110,7 @@ function TodoList({ todos, editId, handleEdit, cancelEdit }) {
                   e.stopPropagation();
                   handleEdit(todo);
                 }}
-                className="absolute transition-all opacity-0 -bottom-1 -right-1 text-sm sm:text-base
+                className="absolute transition-all opacity-100 lg:opacity-0 -bottom-1 -right-1 text-sm sm:text-base
            cursor-pointer group-hover:opacity-100 hover:text-red-500 hover:rotate-12"
               >
                 <FaPenToSquare />
@@ -122,7 +122,7 @@ function TodoList({ todos, editId, handleEdit, cancelEdit }) {
                   e.stopPropagation();
                   cancelEdit();
                 }}
-                className="absolute text-lg transition-all opacity-0 -bottom-1 -right-1 
+                className="absolute text-lg transition-all opacity-100 lg:opacity-0 -bottom-1 -right-1 
            cursor-pointer group-hover:opacity-100 hover:text-red-500 hover:rotate-12"
               >
                 <MdCancel />
