@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.active {
+  background-color: #333;
+  color: white;
+  font-weight: 600;
+  padding: 4px 0;
+  border-radius: 10px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
