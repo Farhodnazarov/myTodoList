@@ -83,6 +83,7 @@ function Register() {
             placeholder="*******"
             name="password"
             required
+            autoComplete="off"
           />
         </label>
         <label className="flex flex-col gap-2 w-full">
