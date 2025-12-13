@@ -60,7 +60,7 @@ function Register() {
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="text"
-            placeholder="Akbar"
+            placeholder="*****"
             name="displayName"
             required
           />
@@ -71,7 +71,7 @@ function Register() {
             className="border px-3 py-1 bg-white rounded-sm"
             type="email"
             name="email"
-            placeholder="Akbar123@gmail.com"
+            placeholder="*****@gmail.com"
             required
           />
         </label>

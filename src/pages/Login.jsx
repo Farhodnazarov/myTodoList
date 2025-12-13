@@ -26,7 +26,7 @@ function Login() {
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="email"
-            placeholder="Akbar123@gmail.com"
+            placeholder="*****@gmail.com"
             name="email"
             required
           />
