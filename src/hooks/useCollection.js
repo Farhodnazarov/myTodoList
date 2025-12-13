@@ -18,6 +18,6 @@ export const useCollection = (collectionName) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [collectionName]);
   return { data };
 };

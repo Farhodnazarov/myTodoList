@@ -44,9 +44,8 @@ function Login() {
         </label>
 
         <p className="text-[12px]">
-          If you don't have an account{" "}
           <Link className="text-blue-400 underline" to={"/register"}>
-            Register
+            If you don't have an account{" "}
           </Link>
         </p>
         {!loading && (

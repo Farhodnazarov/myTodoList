@@ -96,9 +96,8 @@ function Register() {
           />
         </label>
         <p className="text-[12px]">
-          If you have an account{" "}
           <Link className="text-blue-400 underline" to={"/login"}>
-            LogIn
+            If you have an account{" "}
           </Link>
         </p>
         {!loading && (
