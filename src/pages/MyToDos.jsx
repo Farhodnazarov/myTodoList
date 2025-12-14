@@ -9,9 +9,13 @@ import TodoList from "../components/TodoList";
 import TodoForm from "../components/TodoForm";
 // react imports
 import { useState, useEffect } from "react";
+// global context
+import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function MyToDos() {
-  const { data: todos } = useCollection("mytodos");
+  const { user } = useGlobalContext();
+  const uid = user?.uid;
+  const { data: todos } = useCollection("mytodos", uid);
   const [title, setTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [editId, setEditId] = useState(null);

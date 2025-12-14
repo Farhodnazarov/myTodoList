@@ -3,8 +3,19 @@ import { useFirestore } from "../hooks/useFirestore";
 // toaster
 import { toast } from "sonner";
 
-function TodoForm({ editId, title, setTitle, deadline, setDeadline, setEditId }) {
+// custom hooks
+import { useGlobalContext } from "../hooks/useGlobalContext";
+
+function TodoForm({
+  editId,
+  title,
+  setTitle,
+  deadline,
+  setDeadline,
+  setEditId,
+}) {
   const { addTodo, updateTodo } = useFirestore();
+  const { user } = useGlobalContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +33,7 @@ function TodoForm({ editId, title, setTitle, deadline, setDeadline, setEditId })
       title,
       deadline: Number(deadline),
       date: new Date(),
+      uid: user.uid,
     });
 
     setTitle("");
