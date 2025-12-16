@@ -23,15 +23,15 @@ export const useAuth = () => {
   // Register
   const register = ({ displayName, email, password, photoURL }) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
 
         updateProfile(user, { displayName, photoURL }).then(() => {
           const updatedUser = { ...user, displayName, photoURL };
           dispatch({ type: "LOGINREGISTER", payload: updatedUser });
-          toast.success(`Welcome ${displayName}, our todos web site !!!`);
           setLoading(false);
+          toast.success(`Welcome ${displayName}, our todos web site !!!`);
         });
       })
       .catch((error) => {
@@ -47,7 +47,6 @@ export const useAuth = () => {
   //   Login
   const login = ({ email, password }) => {
     setLoading(true);
-
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
