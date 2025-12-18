@@ -15,26 +15,10 @@ import Register from "./pages/Register";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 // context
 import { useGlobalContext } from "./hooks/useGlobalContext";
-import { useEffect } from "react";
-import { getRedirectResult } from "firebase/auth";
-import { toast } from "sonner";
-import { auth } from "./firebase/firebaseConfig";
+
 
 function App() {
-  const { user, isAuthChange, dispatch } = useGlobalContext();
-
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          dispatch({ type: "LOGINREGISTER", payload: result.user });
-          toast.success("Welcome our web site!!!");
-        }
-      })
-      .catch((error) => {
-        toast.error(error.code);
-      });
-  }, []);
+  const { user, isAuthChange } = useGlobalContext();
 
   const routes = createBrowserRouter([
     {

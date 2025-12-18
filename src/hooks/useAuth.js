@@ -11,7 +11,7 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
   signOut,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../firebase/firebaseConfig";
 import { toast } from "sonner";
@@ -66,7 +66,17 @@ export const useAuth = () => {
   };
 
   const loginWithGoogle = () => {
-    signInWithRedirect(auth, provider);
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        dispatch({ type: "LOGINREGISTER", payload: user });
+        toast.success("Welcome our web site!!!");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
   };
 
   //   LogOut

@@ -18,10 +18,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // auth
-export const auth = getAuth(app);
+export const auth = getAuth();
 
 // google
 export const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-  prompt: "select_account",
-});
