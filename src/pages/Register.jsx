@@ -10,7 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 function Register() {
   const [imgFile, setImgFile] = useState();
 
-  const { register, loading, error } = useAuth();
+  const { register, loading, loginWithGoogle } = useAuth();
 
   const handleChange = (e) => {
     setImgFile(e.target.files[0]);
@@ -100,19 +100,30 @@ function Register() {
             If you have an account{" "}
           </Link>
         </p>
-        {!loading && (
-          <button className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75">
-            Register
-          </button>
-        )}
-        {loading && (
-          <button
-            disabled
-            className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75"
-          >
-            Loading...
-          </button>
-        )}
+        <div className="flex gap-2 items-center ml-auto">
+          {!loading && (
+            <button className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75">
+              Register
+            </button>
+          )}
+          {loading && (
+            <button
+              disabled
+              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75"
+            >
+              Loading...
+            </button>
+          )}
+          {!loading && (
+            <button
+              type="button"
+              onClick={loginWithGoogle}
+              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-90"
+            >
+              Google
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

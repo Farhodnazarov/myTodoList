@@ -4,7 +4,7 @@ import { getFormData } from "../requests";
 import { useAuth } from "../hooks/useAuth";
 
 function Login() {
-  const { login, loading, error } = useAuth();
+  const { login, loading, loginWithGoogle } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,19 +48,30 @@ function Login() {
             If you don't have an account{" "}
           </Link>
         </p>
-        {!loading && (
-          <button className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75">
-            Login
-          </button>
-        )}
-        {loading && (
-          <button
-            disabled
-            className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75"
-          >
-            Loading...
-          </button>
-        )}
+        <div className="flex gap-2 items-center ml-auto">
+          {!loading && (
+            <button className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75">
+              Login
+            </button>
+          )}
+          {loading && (
+            <button
+              disabled
+              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75"
+            >
+              Loading...
+            </button>
+          )}
+          {!loading && (
+            <button
+              onClick={loginWithGoogle}
+              type="button"
+              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-90"
+            >
+              Google
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

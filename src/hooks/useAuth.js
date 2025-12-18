@@ -11,8 +11,9 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
   signOut,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { auth, provider } from "../firebase/firebaseConfig";
 import { toast } from "sonner";
 
 export const useAuth = () => {
@@ -64,6 +65,20 @@ export const useAuth = () => {
       });
   };
 
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        dispatch({ type: "LOGINREGISTER", payload: user });
+        toast.success("Welcome our web site!!!");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+  };
+
   //   LogOut
   const logOut = () => {
     signOut(auth)
@@ -75,5 +90,5 @@ export const useAuth = () => {
       });
   };
 
-  return { register, login, logOut, loading, error };
+  return { register, login, logOut, loading, error, loginWithGoogle };
 };

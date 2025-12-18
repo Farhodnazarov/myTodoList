@@ -26,6 +26,8 @@ export function GlobalContextProvider({ children }) {
     });
   }, []);
 
+  console.log(state.user);
+
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}
