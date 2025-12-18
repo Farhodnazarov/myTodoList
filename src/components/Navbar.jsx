@@ -1,3 +1,4 @@
+// rrd
 import { Link } from "react-router-dom";
 
 // react icons
@@ -6,13 +7,26 @@ import { IoIosLogOut } from "react-icons/io";
 // custom hooks
 import { useGlobalContext } from "../hooks/useGlobalContext";
 import { useAuth } from "../hooks/useAuth";
+// components
+import ModalImage from "./ModalImage";
+// react
+import { useState } from "react";
 
 function Navbar() {
   const { user } = useGlobalContext();
   const { logOut } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    if (showModal) {
+      setShowModal(false);
+    } else {
+      setShowModal(true);
+    }
+  };
 
   return (
-    <header className="shadow-sm bg-white sticky top-0 z-50">
+    <header className="shadow-sm bg-white sticky top-0 z-40">
       <div className="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2 md:gap-3">
         {/* Logo */}
         <Link to={"/"} className="font-bold text-xl sm:text-2xl">
@@ -23,8 +37,9 @@ function Navbar() {
         <div className="flex flex-wrap items-center gap-1">
           <p className="text-[12px] md:text-xl">Hello, {user.displayName}</p>
           <img
+            onClick={handleShowModal}
             src={user.photoURL}
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full cursor-pointer object-cover"
             alt="User"
           />
           <button
@@ -35,6 +50,7 @@ function Navbar() {
           </button>
         </div>
       </div>
+      {showModal && <ModalImage handleShowModal={handleShowModal} />}
     </header>
   );
 }
