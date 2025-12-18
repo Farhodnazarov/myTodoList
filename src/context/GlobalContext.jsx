@@ -10,6 +10,8 @@ const changeState = (state, { type, payload }) => {
       return { ...state, user: payload };
     case "ISUSER":
       return { ...state, isAuthChange: true };
+    default:
+      return state;
   }
 };
 
