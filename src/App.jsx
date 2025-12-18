@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 // context
 import { useGlobalContext } from "./hooks/useGlobalContext";
+import { useEffect } from "react";
 
 function App() {
   const { user, isAuthChange, dispatch } = useGlobalContext();
