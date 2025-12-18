@@ -16,6 +16,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 // context
 import { useGlobalContext } from "./hooks/useGlobalContext";
 import { useEffect } from "react";
+import { getRedirectResult } from "firebase/auth";
 
 function App() {
   const { user, isAuthChange, dispatch } = useGlobalContext();
