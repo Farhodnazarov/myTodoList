@@ -18,6 +18,7 @@ import { useGlobalContext } from "./hooks/useGlobalContext";
 import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import { toast } from "sonner";
+import { auth } from "./firebase/firebaseConfig";
 
 function App() {
   const { user, isAuthChange, dispatch } = useGlobalContext();
