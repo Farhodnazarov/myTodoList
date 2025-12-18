@@ -17,7 +17,21 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useGlobalContext } from "./hooks/useGlobalContext";
 
 function App() {
-  const { user, isAuthChange } = useGlobalContext();
+  const { user, isAuthChange, dispatch } = useGlobalContext();
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          dispatch({ type: "LOGINREGISTER", payload: result.user });
+          toast.success("Welcome our web site!!!");
+        }
+      })
+      .catch((error) => {
+        console.log(error.code);
+      });
+  }, []);
+
   const routes = createBrowserRouter([
     {
       path: "/",
