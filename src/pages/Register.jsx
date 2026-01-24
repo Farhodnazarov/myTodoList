@@ -1,5 +1,6 @@
 // rrd imports
 import { Link } from "react-router-dom";
+
 // requests
 import { getFormData } from "../requests";
 import { useState } from "react";
@@ -8,7 +9,7 @@ import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 function Register() {
-  const [imgFile, setImgFile] = useState();
+  const [imgFile, setImgFile] = useState(null);
 
   const { register, loading, loginWithGoogle } = useAuth();
 
@@ -18,7 +19,14 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formDataValues = getFormData(e.target);
+
+    if (!imgFile) {
+      register(formDataValues);
+      e.target.reset();
+      return;
+    }
 
     const reader = new FileReader();
     reader.readAsDataURL(imgFile);
@@ -27,7 +35,6 @@ function Register() {
       const base64data = reader.result.split(",")[1];
 
       const formData = new FormData();
-
       formData.append("key", "7ff3bba58835b990ee08a5d2f0ff6e3e");
       formData.append("image", base64data);
 
@@ -38,9 +45,11 @@ function Register() {
         });
 
         const data = await res.json();
-
         const photoURL = data.data.url;
+
         register({ ...formDataValues, photoURL });
+        console.log({ ...formDataValues, photoURL });
+
         e.target.reset();
       } catch (err) {
         console.log(err.message);
@@ -49,14 +58,17 @@ function Register() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-blue-50 h-screen pt-10">
-      <h2 className="text-2xl font-bold mb-3">Create Your Accaunt : </h2>
+    <div className="flex flex-col items-center bg-blue-50 min-h-screen pt-6 sm:pt-10 px-4">
+      <h2 className="text-2xl font-bold mb-3">Create Your Accaunt :</h2>
+
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 px-10 py-4 items-start bg-white shadow-xl rounded-2xl"
+        className="flex flex-col gap-5 px-6 sm:px-10 py-4 items-start
+                   bg-white shadow-xl rounded-2xl
+                   w-full max-w-[420px]"
       >
         <label className="flex flex-col gap-2 w-full">
-          <span>Name: </span>
+          <span>Name:</span>
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="text"
@@ -65,8 +77,9 @@ function Register() {
             required
           />
         </label>
+
         <label className="flex flex-col gap-2 w-full">
-          <span>Email: </span>
+          <span>Email:</span>
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="email"
@@ -75,8 +88,9 @@ function Register() {
             required
           />
         </label>
+
         <label className="flex flex-col gap-2 w-full">
-          <span>Password: </span>
+          <span>Password:</span>
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="password"
@@ -86,8 +100,9 @@ function Register() {
             autoComplete="off"
           />
         </label>
+
         <label className="flex flex-col gap-2 w-full">
-          <span>Photo: </span>
+          <span>Photo:</span>
           <input
             className="border px-3 py-1 bg-white rounded-sm"
             type="file"
@@ -95,30 +110,44 @@ function Register() {
             onChange={handleChange}
           />
         </label>
+
         <p className="text-[12px]">
-          <Link className="text-blue-400 underline" to={"/login"}>
-            If you have an account{" "}
+          <Link className="text-blue-400 underline" to="/login">
+            If you have an account
           </Link>
         </p>
-        <div className="flex gap-2 items-center ml-auto">
+
+        <div className="flex gap-2 items-center ml-auto flex-wrap justify-end">
           {!loading && (
-            <button className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75">
+            <button
+              className="cursor-pointer transition-colors duration-300
+                               border-amber-500 border-2
+                               hover:bg-amber-500 hover:text-white
+                               bg-white px-5 py-1 rounded active:scale-75"
+            >
               Register
             </button>
           )}
+
           {loading && (
             <button
               disabled
-              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-75"
+              className="cursor-pointer transition-colors duration-300
+                         border-amber-500 border-2
+                         bg-white px-5 py-1 rounded opacity-60"
             >
               Loading...
             </button>
           )}
+
           {!loading && (
             <button
               type="button"
               onClick={loginWithGoogle}
-              className="cursor-pointer ml-auto transition-colors duration-300 border-amber-500 border-2 hover:bg-amber-500 hover:text-white bg-white px-5 py-1 rounded active:scale-90"
+              className="cursor-pointer transition-colors duration-300
+                         border-amber-500 border-2
+                         hover:bg-amber-500 hover:text-white
+                         bg-white px-5 py-1 rounded active:scale-90"
             >
               Google
             </button>
