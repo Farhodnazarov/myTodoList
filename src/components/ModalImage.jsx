@@ -10,7 +10,7 @@ function ModalImage({ handleShowModal }) {
     >
       <div className="relative h-lvh z-50 flex justify-center items-center">
         <img
-          src={user.photoURL}
+          src={user.photoURL ? user.photoURL : "./defaultUser.png"}
           alt=""
           className="rounded-xl w-56 md:w-[500px]"
         />
