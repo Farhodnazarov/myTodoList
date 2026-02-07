@@ -38,7 +38,7 @@ function Navbar() {
           <p className="text-[12px] md:text-xl">Hello, {user.displayName}</p>
           <img
             onClick={handleShowModal}
-            src={user.photoURL}
+            src={user.photoURL ? user.photoURL : "./defaultUser.png"}
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full cursor-pointer object-cover"
             alt="User"
           />
