@@ -80,7 +80,7 @@ function TodoList({ todos, editId, handleEdit, cancelEdit }) {
             </p>
 
             {/* CONTENT */}
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between gap-3 flex-col-reverse md:flex-row">
               {/* TITLE */}
               <h2 className="font-semibold text-lg sm:text-xl flex-1 ">
                 <span className="font-bold">Task:</span>{" "}
